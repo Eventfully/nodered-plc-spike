@@ -1,0 +1,40 @@
+version: '2'
+
+volumes:
+  db_data:
+  nodered_data:
+  
+services:
+  node-red:
+    build: ./node-red
+    image: "eventfully/plc-docker-node-red"
+    networks:
+      - plc 
+    ports:
+      - "1880:1880"
+    depends_on:
+      - mqtt
+      - db
+    volumes:
+      - nodered_data:/data
+  mqtt:
+    image: "eclipse-mosquitto"
+    networks:
+      - plc    
+    ports:
+      - "9001:9001"
+      - "1883:1883"
+  db:
+    build: ./mysql
+    image: "eventfully/plc-mysql"
+    environment:
+      -  MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/mysql"
+    networks:
+      - plc
+    ports:
+      - "3306:3306"
+networks:
+  plc:
+    driver: bridge
