@@ -1,6 +1,8 @@
 # nodered-plc-spike
 Spike to work with Node-RED and PLC sources and MQTT
 
+![Flow Overview](/docs/flow-overview.png)
+
 # pre-requisites
 - A git client
 - A Siemens PLC 
@@ -24,3 +26,10 @@ Spike to work with Node-RED and PLC sources and MQTT
 4. Point your browser to port 1880 - http://localhost:1880
 5. Change the IP of your Siemens PLC and probably also the variables/datablocks
 5. Test and have fun!
+
+## Mysql
+Available on port 3306, user: root, password: password, in the flow, available as hostname `db`
+
+## Mqtt - Mosquitto
+Available on port 1883, no credentials, in the flow, available as hostname `mqtt`
+A great tool for testing MQTT is [MQTT.fx](http://www.mqttfx.org/), requires a Java Runtime.
