@@ -17,6 +17,7 @@ services:
       - db
     volumes:
       - nodered_data:/data
+    user: root
   mqtt:
     image: "eclipse-mosquitto"
     networks:
